@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Janky Wallet",
+  "description": "Identity Wallet Web Extension",
+  "version": "1.0",
+  "action": { 
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "tbd-fav-icon-main.png",
+      "24": "tbd-fav-icon-main.png",
+      "32": "tbd-fav-icon-main.png" 
+    }
+  },
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "host_permissions": ["https://news.ycombinator.com/"],
+  "permissions": ["storage", "scripting", "tabs"],
+  "content_scripts": [
+    {
+      "matches": ["https://news.ycombinator.com/"],
+      "js": ["src/content-scripts/injector.js"],
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["src/provider.js"],
+      "matches": ["https://news.ycombinator.com/*"]
+    }
+  ]
+}

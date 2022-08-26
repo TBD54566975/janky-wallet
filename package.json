@@ -1,0 +1,31 @@
+{
+  "name": "janky-wallet",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.2.37",
+    "rxdb": "^12.7.16",
+    "rxjs": "^7.5.6",
+    "@headlessui/vue": "^1.6.7",
+    "@heroicons/vue": "1.0.6",
+    "multiformats": "9.6.4",
+    "varint": "^6.0.0",
+    "@noble/ed25519": "1.6.0"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^1.0.13",
+    "@vitejs/plugin-vue": "^3.0.0",
+    "autoprefixer": "^10.4.8",
+    "postcss": "^8.4.16",
+    "tailwindcss": "^3.1.8",
+    "vite": "^3.0.0",
+    "@esbuild-plugins/node-globals-polyfill": "^0.1.1",
+    "@esbuild-plugins/node-modules-polyfill": "^0.1.4"
+  }
+}
