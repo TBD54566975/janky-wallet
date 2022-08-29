@@ -45,6 +45,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 class="text-3xl font-bold leading-tight text-gray-900">Janktopia</h1>
           <!-- <h1 class="text-3xl font-bold leading-tight text-gray-900">{{vc}}</h1> -->
+          <p>debug: {{debug}}</p>
         </div>
       </header>
       <main>
@@ -75,12 +76,31 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 import { MenuIcon, XIcon } from '@heroicons/vue/outline'
 import { reactive, ref } from 'vue'
+// import * as db from './db';
+// import * as Personas from './db/persona'
+
+let debug = reactive(ref(''))
+// db.
+// debug = db
+
+// Personas.Persona.query().then(res => res.json()).then(json => {this.debug = json})
+
+  // const { Persona } = await db.create();
+
+  // const [defaultPersona] = await Persona.query({ name: 'default' }, { limit: 1 });
+
+asyncFunc()
+
 
 let vc = reactive(ref(''))
 let subjectId = reactive(ref(''))
 let issuer = reactive(ref(''))
 let licensenumber = reactive(ref(''))
 let jwsProof = reactive(ref(''))
+
+async function asyncFunc() {
+  this.debug = "ASYNC"
+}
 
 function applyForDl() {
 
