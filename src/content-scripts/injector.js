@@ -1,10 +1,29 @@
-document.addEventListener('1660022065712_monkeys', function (e) {
-  console.log('[injector] <- web', e);
+import { Messenger } from '../lib/messenger';
+const messenger = new Messenger();
 
-  chrome.runtime.sendMessage("Test123", resp => {
-    console.log('[injector] <- background', resp);
-  });
+document.addEventListener('1660022065712_monkeys', async function (e) {
+  console.log('content script', e);
+  const { detail: message } = e;
+  const { op } = message;
+
+  let response = { id: message.id };
+
+  if (op === 'DID_AUTHN_REGISTER') {
+    message.rp = { id: e.target.origin }
+    const resp = await messenger.sendMessage(message);
+    console.log('respownz', resp);
+
+    response = resp;
+
+  } else {
+    response.errors = [{ error: 'OP_NOT_FOUND' }];
+  }
+
+  const event = new CustomEvent(e.detail.id, { detail: response });
+  document.dispatchEvent(event);
 });
+
+const sleep = (duration) => new Promise(resolve => setTimeout(resolve, duration));
 
 /**
  * injectScript - Inject internal script to the `window`
@@ -12,6 +31,7 @@ document.addEventListener('1660022065712_monkeys', function (e) {
  * @param  {type} file_path Local path of the internal script.
  * @param  {type} tag The tag as string, where the script will be append (default: 'body').
  * @see    {@link http://stackoverflow.com/questions/20499994/access-window-variable-from-content-script}
+ * @see    {@link https://stackoverflow.com/questions/9602022/chrome-extension-retrieving-global-variable-from-webpage}
  */
 function injectScript(file_path, tag = 'body') {
   var node = document.getElementsByTagName(tag)[0];

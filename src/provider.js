@@ -1,12 +1,26 @@
-console.log('herro');
+console.log('OY!');
 
-document.addEventListener('mimiseeku', function (evt) {
-  console.log('[web] <- injector', evt);
-});
+window.web5 = {
+  did: {
+    authn: {
+      register: async function (registrationOpts = {}) {
+        await window.web5.send('DID_AUTHN_REGISTER', registrationOpts)
+      }
+    }
+  },
+  send: function (op, data) {
+    return new Promise((resolve, reject) => {
+      const evt = new CustomEvent('1660022065712_monkeys', {
+        detail: { data, id: Date.now(), op }
+      });
 
-window.identityProvider = {
-  send: function (msg) {
-    const evt = new CustomEvent('1660022065712_monkeys', msg);
-    document.dispatchEvent(evt);
+      document.addEventListener(evt.detail.id, e => {
+        console.log('peanuts');
+        resolve(e.detail);
+      });
+
+      document.dispatchEvent(evt);
+    })
+
   }
 };
