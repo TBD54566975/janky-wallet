@@ -1,6 +1,6 @@
 import * as db from '../db';
 
-chrome.runtime.onInstalled.addListener(async ({ reason, version }) => {
+chrome.runtime.onInstalled.addListener(async ({ _reason, _version }) => {
   const { Persona } = await db.create();
 
   const [defaultPersona] = await Persona.query({ name: 'default' }, { limit: 1 });
@@ -8,6 +8,13 @@ chrome.runtime.onInstalled.addListener(async ({ reason, version }) => {
   if (!defaultPersona) {
     await Persona.create('default');
   }
+});
+
+chrome.action.onClicked.addListener(async _ => {
+  await chrome.tabs.create({
+    active: true,
+    url: '/dashboard'
+  });
 });
 
 chrome.runtime.onMessage.addListener(async (message, sender) => {
@@ -24,7 +31,7 @@ chrome.runtime.onMessage.addListener(async (message, sender) => {
       top: 100,
       left: cw.width - 500,
       type: 'popup',
-      url: '/did-registration'
+      url: '/user-consent'
     });
 
     const userConsentTask = {
