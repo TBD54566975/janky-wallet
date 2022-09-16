@@ -9,7 +9,7 @@ window.web5 = {
     }
   },
   send: function (op, data) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _) => {
       const evt = new CustomEvent('1660022065712_monkeys', {
         detail: { data, id: Date.now(), op }
       });
