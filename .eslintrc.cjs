@@ -1,15 +1,23 @@
 module.exports = {
+  env: {
+    browser: true,
+    node: true
+  },
+  globals: {
+    chrome: true
+  },
   parserOptions: {
     ecmaVersion: 2022
-  },
-  env: {
-    node: true,
   },
   extends: [
     'eslint:recommended',
     'plugin:vue/vue3-strongly-recommended',
   ],
   rules: {
+    'vue/multi-word-component-names': ['off'],
+    'no-unused-vars': ['error', { 
+      'argsIgnorePattern': '^_' 
+    }],
     'quotes': [
       'error',
       'single',
