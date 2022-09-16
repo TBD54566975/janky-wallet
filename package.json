@@ -9,6 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "6.1.1",
+    "@fortawesome/free-brands-svg-icons": "6.1.1",
+    "@fortawesome/free-regular-svg-icons": "6.1.1",
+    "@fortawesome/free-solid-svg-icons": "6.1.1",
+    "@fortawesome/vue-fontawesome": "3.0.1",
     "eventemitter3": "4.0.7",
     "vue": "^3.2.37",
     "vue-router": "4.1.5",
@@ -22,6 +27,7 @@
     "@noble/ed25519": "1.6.0"
   },
   "devDependencies": {
+    "@types/chrome": "0.0.196",
     "eslint": "8.23.1",
     "eslint-plugin-vue": "9.4.0",
     "@crxjs/vite-plugin": "^1.0.13",
