@@ -4,7 +4,7 @@ window.web5 = {
   did: {
     authn: {
       register: async function (registrationOpts = {}) {
-        await window.web5.send('DID_AUTHN_REGISTER', registrationOpts)
+        await window.web5.send('DID_AUTHN_REGISTER', registrationOpts);
       }
     }
   },
@@ -20,7 +20,6 @@ window.web5 = {
       });
 
       document.dispatchEvent(evt);
-    })
-
+    });
   }
 };

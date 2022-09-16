@@ -9,7 +9,7 @@ document.addEventListener('1660022065712_monkeys', async function (e) {
   let response = { id: message.id };
 
   if (op === 'DID_AUTHN_REGISTER') {
-    message.rp = { id: e.target.origin }
+    message.rp = { id: e.target.origin };
     const resp = await messenger.sendMessage(message);
     console.log('respownz', resp);
 
@@ -41,4 +41,4 @@ function injectScript(file_path, tag = 'body') {
   node.appendChild(script);
 }
 
-injectScript(chrome.runtime.getURL('src/provider.js'));
+injectScript(chrome.runtime.getURL('src/content-scripts/web5.js'));
