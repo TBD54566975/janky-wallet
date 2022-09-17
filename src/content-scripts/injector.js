@@ -4,11 +4,11 @@ const messenger = new Messenger();
 document.addEventListener('1660022065712_monkeys', async function (e) {
   console.log('content script', e);
   const { detail: message } = e;
-  const { op } = message;
+  const { cmd } = message;
 
   let response = { id: message.id };
 
-  if (op === 'DID_AUTHN_REGISTER') {
+  if (cmd === 'DID_AUTHN_REGISTER') {
     message.rp = { id: e.target.origin };
     const resp = await messenger.sendMessage(message);
     console.log('respownz', resp);
@@ -22,8 +22,6 @@ document.addEventListener('1660022065712_monkeys', async function (e) {
   const event = new CustomEvent(e.detail.id, { detail: response });
   document.dispatchEvent(event);
 });
-
-const sleep = (duration) => new Promise(resolve => setTimeout(resolve, duration));
 
 /**
  * injectScript - Inject internal script to the `window`

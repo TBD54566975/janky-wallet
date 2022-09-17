@@ -1,4 +1,8 @@
 import * as db from '../db';
+import { BackgroundMessageRouter } from '../lib/background-message-router';
+import { getRegistrationInfo } from './message-handlers/did-authn/get-registration-info';
+import { startDidRegistration } from './message-handlers/did-authn/start-did-registration';
+import { getPersonas } from './message-handlers/get-personas';
 
 chrome.runtime.onInstalled.addListener(async ({ _reason, _version }) => {
   const { Persona } = await db.create();
@@ -10,61 +14,14 @@ chrome.runtime.onInstalled.addListener(async ({ _reason, _version }) => {
   }
 });
 
+// controls what happens when the extension's icon is clicked
 chrome.action.onClicked.addListener(async _ => {
-  await chrome.tabs.create({
-    active: true,
-    url: '/dashboard'
-  });
+  // load the extension dashboard in a new tab in the current window
+  await chrome.tabs.create({ active: true, url: '/dashboard' });
 });
 
-chrome.runtime.onMessage.addListener(async (message, sender) => {
-  console.log('[background]', sender, message);
+const messageRouter = new BackgroundMessageRouter();
 
-  const response = { id: message.id };
-
-  if (message.op === 'DID_AUTHN_REGISTER') {
-    const cw = await chrome.windows.getLastFocused();
-
-    const userConsentPopup = await chrome.windows.create({
-      width: 459,
-      height: 692,
-      top: 100,
-      left: cw.width - 500,
-      type: 'popup',
-      url: '/user-consent'
-    });
-
-    const userConsentTask = {
-      message,
-      metadata: {
-        sender: sender.tab.id,
-        userConsentWindowId: userConsentPopup.id
-      }
-    };
-
-    chrome.storage.session.set({ [userConsentPopup.id]: userConsentTask });
-
-  } else if (message.op === 'GET_PERSONAS') {
-    const { Persona } = await db.create();
-    const personas = await Persona.query();
-    const result = [];
-
-    for (let p of personas) {
-      result.push(p.toJSON());
-    }
-
-    chrome.tabs.sendMessage(sender.tab.id, { id: message.id, data: result });
-
-  } else if (message.op === 'GET_REGISTRATION_INFO') {
-    const tasks = await chrome.storage.session.get();
-    const registrationInfo = tasks[sender.tab.windowId];
-
-    console.log('[background]', registrationInfo);
-    chrome.tabs.sendMessage(sender.tab.id, { id: message.id, data: registrationInfo.message });
-  } else {
-    response.errors = [{ error: 'OP_NOT_FOUND' }];
-  }
-
-
-  return true;
-});
+messageRouter.on('DID_AUTHN_REGISTER', startDidRegistration);
+messageRouter.on('GET_REGISTRATION_INFO', getRegistrationInfo);
+messageRouter.on('GET_PERSONAS', getPersonas);

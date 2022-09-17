@@ -1,5 +1,9 @@
 import EventEmitter from 'eventemitter3';
 
+/**
+ * used by content scripts to send messages to the extension's background service
+ * worker and receive responses in a synchronous manner. 
+ */
 export class Messenger {
   constructor() {
     this.emitter = new EventEmitter();
