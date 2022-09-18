@@ -30,25 +30,26 @@ Our overall goal is for there to be many wallets developed by anyone who chooses
 The wallet's architecture is comprised of 4 different elements/contexts:
 
 ### Web Page 
-- Also known as "Userland". 
-- This is where an application's javascript runs. Access to a user's identity/data is facilitated by calling methods exposed by the `web5` API
-- Any/all actions pertaining to user-data access is guarded by explicit user consent that is raised and controlled by the background service worker. A web page will only be able to access or write user data after user consent is granted.
+_Also referred to as "Userland"_
+
+
+This is where an application's javascript runs. Access to a user's identity/data is facilitated by calling methods exposed by the `web5` API. Any/all actions pertaining to user-data access is guarded by explicit user consent that is raised and controlled by the background service worker. A web page will only be able to access or write user data after user consent is granted.
 
 ### Injector
-The injector is a content-script that is loaded alongside every webpage. It has has two responsibilities:
+The injector is a [content script](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts) that is loaded alongside every webpage. It has has two responsibilities:
 - Inject the `web5` API onto the `window` of a given web page
 - Act as a delegate by proxying messages between userland <-> background
 
 The content script has the exact same limitations that a Web Page does. The only distinguishing factor is its ability to send mesages to the background service worker. The injector has no elevated or privileged access to user data. Messages sent by the injector are indentified by the `origin` property set by the browser.
 
 ### Background Service Worker
-This context is the heart and soul of the wallet and has direct access to read and write user data. You can think of it as the wallet's "backend". The background service worker is communicated with via messages that contain a `cmd` property. This `cmd` property dictates the action taken by the service worker. 
+The [background service worker](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Background_scripts) context is the heart and soul of the wallet and has direct access to read and write user data. You can think of it as the wallet's "backend". The background service worker is communicated with via messages that contain a `cmd` property. This `cmd` property dictates the action taken by the service worker. 
 
 
 Not all contexts are allowed to run every available `cmd`. For example, UI raised by the wallet can send commands that the injector can't and vice versa. Additionally, commands sent by the injector on behalf of a web page will often cause the background worker to raise a user consent popup.
 
 ### Wallet UI
-Wallet UI is always raised by the Background Service Worker. Given this, it has access to more commands than the injector context. Examples of Wallet UI include:
+Wallet UI is always raised by the background service worker using [`browser.windows.create`](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/create) and can communicate directly with the background service worker. Windows created by an extension's background service worker are effectively considered as [content scripts](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts). The wallet UI context has access to more commands than the injector context. Examples of Wallet UI include:
 - The dashboard that is rendered when the extension popup is clicked. 
 - User consent popups that are rendered as an effect of userland calling a `web5` method that requires user consent before proceeding. 
 
