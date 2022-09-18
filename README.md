@@ -21,7 +21,8 @@ The primary motivation for this project is to provide an entrypoint to the web5 
 
 Our overall goal is for there to be many wallets developed by anyone who chooses to do so. In fact, we'll have failed if we're the only wallet in town. Individuals should be able to choose whichever wallet best suits their needs and feels most intuitive. Moreover, individuals should not fall victim to vendor lock-in. In an effort to achieve this goal, we intend to use as many existing standards as possible in addition to working alongside anyone who chooses to participate to develop any standards that may be missing (e.g. DIDAuthn). 
 
-- **TODO**: add paragraph focused on "so how do we intend to achieve ^?"
+
+⚠  **TODO**: add paragraph focused on "so how do we intend to achieve ^?"
 
 # Wallet Architecture
 ![wallet architecture](diagrams/wallet-architecture.png)
