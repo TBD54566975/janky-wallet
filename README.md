@@ -3,7 +3,7 @@
 A browser extension identity wallet
 
 - [Introduction](#introduction)
-- [Wallet Architecture](#wallet-architecture)
+- [Architecture](#architecture)
   - [Architecture Elements](#architecture-elements)
     - [Web Page](#web-page)
     - [Injector](#injector)
@@ -24,7 +24,7 @@ Our overall goal is for there to be many wallets developed by anyone who chooses
 
 ⚠  **TODO**: add paragraph focused on "so how do we intend to achieve ^?"
 
-# Wallet Architecture
+# Architecture
 ![wallet architecture](diagrams/wallet-architecture.png)
 
 ## Architecture Elements
