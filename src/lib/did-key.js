@@ -32,23 +32,25 @@ export class DIDKey {
     idBytes.set(publicKeyBytes, ED25519_CODEC_ID.length);
 
     const id = base58btc.encode(idBytes);
-    const did = `did:key:${id}`
+    const did = `did:key:${id}`;
+    const keyId = `${did}#${id}`;
 
     // TODO: `publicJWK` code is duplicated in resolve. move JWK creation into a separate method (Moe - 08/01/2022)
     const publicJWK = {
-      alg: 'EdDSA',
-      crv: 'Ed25519',
-      kty: 'OKP',
-      use: 'sig',
-      x: base64url.baseEncode(publicKeyBytes)
+      alg : 'EdDSA',
+      crv : 'Ed25519',
+      kid : keyId,
+      kty : 'OKP',
+      use : 'sig',
+      x   : base64url.baseEncode(publicKeyBytes)
     };
 
-    const privateJWK = { ...publicJWK, d: base64url.baseEncode(privateKeyBytes) }
+    const privateJWK = { ...publicJWK, d: base64url.baseEncode(privateKeyBytes) };
 
     return { did, publicJWK, privateJWK };
   }
 
-  static async resolve(did) {
+  static resolve(did) {
     const [scheme, method, id] = did.split(':');
 
     if (scheme !== 'did') {
@@ -63,11 +65,11 @@ export class DIDKey {
     const publicKeyBytes = idBytes.slice(ED25519_CODEC_ID.length);
 
     const publicJwk = {
-      alg: 'EdDSA',
-      crv: 'Ed25519',
-      kty: 'OKP',
-      use: 'sig',
-      x: base64url.baseEncode(publicKeyBytes)
+      alg : 'EdDSA',
+      crv : 'Ed25519',
+      kty : 'OKP',
+      use : 'sig',
+      x   : base64url.baseEncode(publicKeyBytes)
     };
 
     const keyId = `${did}#${id}`;
@@ -78,17 +80,17 @@ export class DIDKey {
         'https://w3id.org/security/suites/ed25519-2020/v1',
         'https://w3id.org/security/suites/x25519-2020/v1'
       ],
-      'id': did,
-      'verificationMethod': [{
-        id: keyId,
-        type: 'JsonWebKey2020',
-        controller: did,
-        publicKeyJwk: publicJwk
+      'id'                 : did,
+      'verificationMethod' : [{
+        id           : keyId,
+        type         : 'JsonWebKey2020',
+        controller   : did,
+        publicKeyJwk : publicJwk
       }],
-      'authentication': [keyId],
-      'assertionMethod': [keyId],
-      'capabilityDelegation': [keyId],
-      'capabilityInvocation': [keyId]
+      'authentication'       : [keyId],
+      'assertionMethod'      : [keyId],
+      'capabilityDelegation' : [keyId],
+      'capabilityInvocation' : [keyId]
     };
 
     return didDocument;
