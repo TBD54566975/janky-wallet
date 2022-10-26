@@ -8,6 +8,7 @@ const jwtRegex = /^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$/;
 export class ParsedCredential {
   constructor(cred) {
     this.payload = cred;
+    
     try {
       if (typeof cred === 'string') {
         if (jwtRegex.test(cred)) {
@@ -40,9 +41,14 @@ export class ParsedCredential {
   }
 }
 
-export function processCredentials(creds, definition) {
-  let results = sortCredentials(definition, creds);
-  const requirements = definition.submission_requirements;
+export function processCredentials(creds, manifest) {
+  const { presentation_definition: definition } = manifest;
+  const format = manifest.format || definition.format;
+
+
+  let results = sortCredentials(definition, creds, format);
+  const { submission_requirements: requirements } = definition;
+  
   if (requirements) {
     let filtered = evalRequirements(results.byGroup, requirements);
     if (filtered.length) {
@@ -56,8 +62,8 @@ export function processCredentials(creds, definition) {
   return results;
 }
 
-function sortCredentials(definition, creds) {
-  const { format, input_descriptors: descriptors } = definition;
+function sortCredentials(definition, creds, format) {
+  const { input_descriptors: descriptors } = definition;
   const results = {
     byId: {}
   };
@@ -69,8 +75,8 @@ function sortCredentials(definition, creds) {
       submittable: false,
       credentials: []
     };
-    const selfAssertable = constraints.subject_is_issuer === 'required' || 
-                           constraints.subject_is_issuer === 'preferred';
+    const selfAssertable = constraints.subject_is_issuer === 'required' ||
+      constraints.subject_is_issuer === 'preferred';
     if (definition.submission_requirements && !group) {
       throw new SyntaxError('All descriptors must be grouped if Submission Requirements are present');
     }
@@ -86,7 +92,7 @@ function sortCredentials(definition, creds) {
           size: 0
         });
         groupEntry.size++;
-        if (selfAssertable){
+        if (selfAssertable) {
           groupEntry.choices++;
           groupEntry.selfAssertable = groupEntry.selfAssertable || {};
           groupEntry.selfAssertable[descriptor.id] = descriptor;
@@ -100,13 +106,13 @@ function sortCredentials(definition, creds) {
         const { fields } = constraints;
         parsedCreds.set(c, credential = new ParsedCredential(c));
         if (
-            (format && formatFilter(credential, format)) && 
-            (fields && fieldFilter(credential, fields))
-          ) {
-            match = true;
-            idEntry.submittable = true;
-            idEntry.credentials.push(credential);
-          }  
+          (format && formatFilter(credential, format)) &&
+          (fields && fieldFilter(credential, fields))
+        ) {
+          match = true;
+          idEntry.submittable = true;
+          idEntry.credentials.push(credential);
+        }
       }
       catch (e) {
         match = false;
@@ -120,7 +126,7 @@ function sortCredentials(definition, creds) {
       }
     });
   });
-  console.log(results);
+
   return results;
 }
 
@@ -132,7 +138,7 @@ function evalRequirements(groupedResults, requirements, count) {
       if (req.rule === 'pick' && req.count > group.size) {
         throw new TypeError('Invalid submission_requirement');
       }
-      else if (group.choices >= req.count){
+      else if (group.choices >= req.count) {
         return true;
       }
     }
