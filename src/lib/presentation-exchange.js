@@ -1,8 +1,8 @@
-
 import jwt_decode from 'jwt-decode';
 import { JSONPath } from '@astronautlabs/jsonpath';
-const ajv = require('ajv');
-const schemaValidator = new ajv();
+import Ajv from 'ajv';
+
+const schemaValidator = new Ajv();
 const jwtRegex = /^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$/;
 
 export class ParsedCredential {
