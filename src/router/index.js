@@ -24,6 +24,10 @@ const routes = [
         path: 'did-registration',
         component: () => import('../views/user-consent-popup/DIDRegistration.vue'),
       },
+      {
+        path: 'vc-application',
+        component: () => import('../views/user-consent-popup/VCApplication.vue'),
+      },
     ]
   },
   {
