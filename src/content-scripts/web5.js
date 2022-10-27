@@ -8,6 +8,11 @@ window.web5 = {
       }
     }
   },
+  vc: {
+    apply: async function(credentialManifest) {
+      await window.web5.send('VC_APPLY', credentialManifest);
+    }
+  },
   send: function (cmd, data) {
     return new Promise((resolve, _) => {
       const evt = new CustomEvent('1660022065712_monkeys', {

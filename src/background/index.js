@@ -2,6 +2,7 @@ import * as db from '../db';
 import { BackgroundMessageRouter } from '../lib/background-message-router';
 import { getRegistrationInfo } from './message-handlers/did-authn/get-registration-info';
 import { startDidRegistration } from './message-handlers/did-authn/start-did-registration';
+import { renderCredentialApplication } from './message-handlers/render-credential-application';
 import { getPersonas } from './message-handlers/get-personas';
 
 chrome.runtime.onInstalled.addListener(async ({ _reason, _version }) => {
@@ -25,3 +26,5 @@ const messageRouter = new BackgroundMessageRouter();
 messageRouter.on('DID_AUTHN_REGISTER', startDidRegistration);
 messageRouter.on('GET_REGISTRATION_INFO', getRegistrationInfo);
 messageRouter.on('GET_PERSONAS', getPersonas);
+
+messageRouter.on('VC_APPLY', renderCredentialApplication);
