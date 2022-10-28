@@ -18,11 +18,8 @@ export async function renderCredentialApplication(credentialManifest, sender, _)
   // TODO: run pe.processCredentials
 
   const userConsentTask = {
-    data: {
-      credentialManifest,
-      processedCredentials: result
-    },
-    metadata: {
+    data     : result,
+    metadata : {
       sender              : sender.tab.id,
       userConsentWindowId : userConsentWindow.id
     }
