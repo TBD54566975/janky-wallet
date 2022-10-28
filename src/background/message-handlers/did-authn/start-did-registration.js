@@ -6,8 +6,8 @@ export async function startDidRegistration(data, sender, _) {
   const userConsentTask = {
     data,
     metadata: {
-      sender: sender.tab.id,
-      userConsentWindowId: userConsentWindow.id
+      sender              : sender.tab.id,
+      userConsentWindowId : userConsentWindow.id
     }
   };
 

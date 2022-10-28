@@ -1,13 +1,13 @@
 <script setup>
-  import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
-  import { MenuIcon, XIcon } from '@heroicons/vue/outline';
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
+import { MenuIcon, XIcon } from '@heroicons/vue/outline';
   
-  const navigation = [
-    { name: 'Home', href: '#', current: true },
-    { name: 'Contacts', href: '#', current: false },
-    { name: 'Personas', href: '#', current: false },
-  ];
-  </script>
+const navigation = [
+  { name: 'Home', href: '#', current: true },
+  { name: 'Contacts', href: '#', current: false },
+  { name: 'Personas', href: '#', current: false },
+];
+</script>
 
 <template>
   <div class="font-tbd min-h-full w-96">

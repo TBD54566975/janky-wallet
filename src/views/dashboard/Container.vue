@@ -1,24 +1,24 @@
 <script setup>
-  import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue';
-  import { MenuAlt2Icon, XIcon } from '@heroicons/vue/outline';
-  import { useRoute } from 'vue-router';
-  import { onMounted, ref } from 'vue';
+import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue';
+import { MenuAlt2Icon, XIcon } from '@heroicons/vue/outline';
+import { useRoute } from 'vue-router';
+import { onMounted, ref } from 'vue';
   
-  const items = [
-    { name: 'Dashboard', href: '/dashboard', icon: ['fa-solid', 'fa-house'], current: true },
-    { name: 'Personas', href: '/dashboard/personas', icon: ['fa-solid', 'fa-address-book'], current: false },
-    { name: 'Settings', href: '/dashboard/settings', icon: ['fa-solid', 'fa-gear'], current: false },
-  ];
+const items = [
+  { name: 'Dashboard', href: '/dashboard', icon: ['fa-solid', 'fa-house'], current: true },
+  { name: 'Personas', href: '/dashboard/personas', icon: ['fa-solid', 'fa-address-book'], current: false },
+  { name: 'Settings', href: '/dashboard/settings', icon: ['fa-solid', 'fa-gear'], current: false },
+];
   
-  const loading = ref(false);
-  const sidebarOpen = ref(false);
+const loading = ref(false);
+const sidebarOpen = ref(false);
   
-  const route = useRoute();
+const route = useRoute();
   
-  onMounted(() => {
-  });
+onMounted(() => {
+});
   
-  </script>
+</script>
   
 <template>
   <!-- Loading Spinner -->

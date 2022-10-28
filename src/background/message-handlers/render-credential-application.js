@@ -23,8 +23,8 @@ export async function renderCredentialApplication(credentialManifest, sender, _)
       processedCredentials: result
     },
     metadata: {
-      sender: sender.tab.id,
-      userConsentWindowId: userConsentWindow.id
+      sender              : sender.tab.id,
+      userConsentWindowId : userConsentWindow.id
     }
   };
 

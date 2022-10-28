@@ -1,7 +1,6 @@
 import { JSONPath } from '@astronautlabs/jsonpath';
-import { ParsedCredential } from './parsed-credential';
-
 import Ajv from 'ajv';
+import { ParsedCredential } from './parsed-credential';
 
 const schemaValidator = new Ajv();
 
@@ -35,9 +34,9 @@ function sortCredentials(definition, creds, format) {
   descriptors.forEach(descriptor => {
     const { id, group, constraints } = descriptor;
     const idEntry = results.byId[id] = {
-      descriptor: descriptor,
-      submittable: false,
-      credentials: []
+      descriptor  : descriptor,
+      submittable : false,
+      credentials : []
     };
     const selfAssertable = constraints.subject_is_issuer === 'required' ||
       constraints.subject_is_issuer === 'preferred';
@@ -52,8 +51,8 @@ function sortCredentials(definition, creds, format) {
       var groups = results.byGroup = (results.byGroup || {});
       group.forEach(z => {
         let groupEntry = groups[z] = (groups[z] || {
-          choices: 0,
-          size: 0
+          choices : 0,
+          size    : 0
         });
         groupEntry.size++;
         if (selfAssertable) {
