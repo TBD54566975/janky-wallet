@@ -1,4 +1,4 @@
-console.log('OY!');
+console.log('injected web5 onto window!');
 
 window.web5 = {
   did: {
