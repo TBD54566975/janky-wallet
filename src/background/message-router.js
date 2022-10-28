@@ -1,4 +1,4 @@
-export class BackgroundMessageRouter {
+export class MessageRouter {
   constructor() {
     this.registeredHandlers = {};
 

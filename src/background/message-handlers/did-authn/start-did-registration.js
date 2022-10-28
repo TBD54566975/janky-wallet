@@ -1,4 +1,4 @@
-import { openUserConsentWindow  } from '../../../lib/background-utils';
+import { openUserConsentWindow  } from '../../utils';
 
 export async function startDidRegistration(data, sender, _) {
   const userConsentWindow = await openUserConsentWindow('/user-consent/did-registration');

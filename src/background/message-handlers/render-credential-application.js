@@ -1,4 +1,4 @@
-import { openUserConsentWindow } from '../../lib/background-utils';
+import { openUserConsentWindow } from '../utils';
 import { processCredentials } from '../../lib/presentation-exchange';
 
 export async function renderCredentialApplication(credentialManifest, sender, _) 

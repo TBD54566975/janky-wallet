@@ -1,6 +1,5 @@
 import * as db from '../db';
-import { BackgroundMessageRouter } from '../lib/background-message-router';
-import { getRegistrationInfo } from './message-handlers/did-authn/get-registration-info';
+import { MessageRouter } from './message-router';
 import { getUserConsentTask } from './message-handlers/get-user-consent-task';
 import { startDidRegistration } from './message-handlers/did-authn/start-did-registration';
 import { renderCredentialApplication } from './message-handlers/render-credential-application';
@@ -22,10 +21,9 @@ chrome.action.onClicked.addListener(async _ => {
   await chrome.tabs.create({ active: true, url: '/dashboard' });
 });
 
-const messageRouter = new BackgroundMessageRouter();
+const messageRouter = new MessageRouter();
 
 messageRouter.on('DID_AUTHN_REGISTER', startDidRegistration);
-messageRouter.on('GET_REGISTRATION_INFO', getRegistrationInfo);
 messageRouter.on('GET_PERSONAS', getPersonas);
 
 messageRouter.on('VC_APPLY', renderCredentialApplication);
