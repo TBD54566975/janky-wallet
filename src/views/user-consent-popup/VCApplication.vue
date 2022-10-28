@@ -1,7 +1,15 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import { Messenger } from '../../lib/messenger';
 
 const loading = ref(true);
+const messenger = new Messenger();
+
+onMounted(async () => {
+  const applicationDetails = await messenger.sendMessage({ cmd: 'GET_USER_CONSENT_TASK' });
+  console.log(applicationDetails);
+  loading.value = false;
+});
 </script>
 
 <template>

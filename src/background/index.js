@@ -1,6 +1,7 @@
 import * as db from '../db';
 import { BackgroundMessageRouter } from '../lib/background-message-router';
 import { getRegistrationInfo } from './message-handlers/did-authn/get-registration-info';
+import { getUserConsentTask } from './message-handlers/get-user-consent-task';
 import { startDidRegistration } from './message-handlers/did-authn/start-did-registration';
 import { renderCredentialApplication } from './message-handlers/render-credential-application';
 import { getPersonas } from './message-handlers/get-personas';
@@ -28,3 +29,4 @@ messageRouter.on('GET_REGISTRATION_INFO', getRegistrationInfo);
 messageRouter.on('GET_PERSONAS', getPersonas);
 
 messageRouter.on('VC_APPLY', renderCredentialApplication);
+messageRouter.on('GET_USER_CONSENT_TASK', getUserConsentTask);
