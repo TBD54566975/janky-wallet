@@ -81,9 +81,9 @@ function handleSubmit(_) {
   <div v-if="loading" class="flex h-screen items-center justify-center">
     <font-awesome-icon icon="fa-solid fa-spinner" class="h-24 w-24" spin />
   </div>
-  <div class="flex flex-col">
+  <div class="align-middle flex flex-col justify-center">
     <div>
-      <form @submit.prevent="handleSubmit">
+      <form class="align-middle flex flex-col justify-center" @submit.prevent="handleSubmit">
         <div ref="formContainer" />
         <button type="submit" class="bg-tbd-yellow border border-transparent flex focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-tbd-yellower justify-center mt-8 px-4 py-4 rounded-md shadow-sm text-black text-lg">
           Submit
