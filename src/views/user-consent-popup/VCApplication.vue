@@ -33,9 +33,9 @@ function parseApplicationDetails(applicationDetails) {
     const idRequirements = applicationDetails.byId[id];
     for (let field of idRequirements.descriptor.constraints.fields) {
       // TODO: find deterministic property name. using id for now
-      const { id, filter, path } = field;
+      const { id, filter, name, path } = field;
       jsonSchema.properties[id] = {
-        title: 'TODO: FIELD NAME',
+        title: name || id,
         ...filter 
       };
 
