@@ -14,11 +14,11 @@
     "service_worker": "src/background/index.js",
     "type": "module"
   },
-  "host_permissions": ["https://news.ycombinator.com/"],
+  "host_permissions": ["<all_urls>"],
   "permissions": ["storage", "scripting", "tabs"],
   "content_scripts": [
     {
-      "matches": ["https://news.ycombinator.com/"],
+      "matches": ["<all_urls>"],
       "js": ["src/content-scripts/injector.js"],
       "all_frames": true,
       "run_at": "document_end"
@@ -27,7 +27,7 @@
   "web_accessible_resources": [
     {
       "resources": ["src/content-scripts/web5.js"],
-      "matches": ["https://news.ycombinator.com/*"]
+      "matches": ["<all_urls>"]
     }
   ]
 }
