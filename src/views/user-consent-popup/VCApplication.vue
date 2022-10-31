@@ -3,11 +3,13 @@ import { onMounted, ref } from 'vue';
 import { JSONPath } from '@astronautlabs/jsonpath';
 import { JSONEditor } from '../../vendor/json-editor';
 
-import { FormTheme } from '../../form-theme';
+// import { FormTheme } from '../../form-theme';
 import { Messenger } from '../../lib/messenger';
 
+import '../../vendor/spectre.css';
+
 // inject custom theme
-JSONEditor.defaults.themes.form = FormTheme;
+// JSONEditor.defaults.themes.form = FormTheme;
 
 const formContainer = ref();
 const loading = ref(true);
@@ -57,7 +59,7 @@ onMounted(async () => {
     disable_properties : true, 
     disable_edit_json  : true, 
     schema             : jsonSchema, 
-    theme              : 'form'
+    theme              : 'spectre'
   });
   
 });
