@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import { JSONEditor } from '@json-editor/json-editor';
 import { JSONPath } from '@astronautlabs/jsonpath';
+import { JSONEditor } from '../../vendor/json-editor';
 
 import { FormTheme } from '../../form-theme';
 import { Messenger } from '../../lib/messenger';
@@ -45,20 +45,19 @@ function parseApplicationDetails(applicationDetails) {
 }
 
 onMounted(async () => {
-  const applicationDetails = await messenger.sendMessage({ cmd: 'GET_USER_CONSENT_TASK' });
+  const result = await messenger.sendMessage({ cmd: 'GET_USER_CONSENT_TASK' });
+  const { data: applicationDetails } = result.message;
   
   const { jsonSchema, pathMap } = parseApplicationDetails(applicationDetails);
   propertyPathMap = pathMap;
 
   loading.value = false;
-  
   jsonSchemaForm = new JSONEditor(formContainer.value, { 
     disable_collapse   : true, 
     disable_properties : true, 
     disable_edit_json  : true, 
-    iconlib            : 'fontawesome5',
     schema             : jsonSchema, 
-    theme              : 'form' 
+    theme              : 'form'
   });
   
 });
