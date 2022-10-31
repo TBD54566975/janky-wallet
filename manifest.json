@@ -28,6 +28,11 @@
     {
       "resources": ["src/content-scripts/web5.js"],
       "matches": ["<all_urls>"]
+    },
+    {
+      "resources": ["node_modules/.vite/deps/*"],
+      "matches": ["<all_urls>"],
+      "use_dynamic_url": true
     }
   ]
 }
