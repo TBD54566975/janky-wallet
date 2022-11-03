@@ -3,13 +3,9 @@ import { onMounted, ref } from 'vue';
 import { JSONPath } from '@astronautlabs/jsonpath';
 import { JSONEditor } from '../../vendor/json-editor';
 
-// import { FormTheme } from '../../form-theme';
 import { Messenger } from '../../lib/messenger';
 
 import '../../vendor/spectre.css';
-
-// inject custom theme
-// JSONEditor.defaults.themes.form = FormTheme;
 
 const formContainer = ref();
 const loading = ref(true);
@@ -22,8 +18,8 @@ function parseApplicationDetails(applicationDetails) {
   const pathMap = new Map();
   const jsonSchema = {
     '$schema'              : 'http://json-schema.org/draft-04/schema#',
-    'description'          : 'TODO: DESCRIPTION',
-    'title'                : 'TODO: TITLE',
+    'description'          : 'Use this card to prove your identity online',
+    'title'                : 'Digital Identity Card ',
     'type'                 : 'object',
     'properties'           : {},
     'additionalProperties' : false
@@ -64,7 +60,7 @@ onMounted(async () => {
   
 });
 
-function handleSubmit(_) {
+async function handleSubmit(_) {
   const vc = {};
   const formSubmission = jsonSchemaForm.getValue();
   
@@ -73,7 +69,9 @@ function handleSubmit(_) {
     JSONPath.value(vc, path, formSubmission[property]);
   }
 
-  console.log(vc);
+  await chrome.runtime.sendMessage({ cmd: 'VC_SUBMIT_APPLICATION', data: {} });
+
+  window.close();
 }
 </script>
 

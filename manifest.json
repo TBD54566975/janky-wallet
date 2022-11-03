@@ -15,7 +15,7 @@
     "type": "module"
   },
   "host_permissions": ["<all_urls>"],
-  "permissions": ["storage", "scripting", "tabs"],
+  "permissions": ["notifications", "storage", "scripting", "tabs"],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

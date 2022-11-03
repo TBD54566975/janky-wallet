@@ -20,6 +20,16 @@ document.addEventListener('1660022065712_monkeys', async function (e) {
     console.log('VC_APPLY', resp);
 
     response = resp;
+  } else if (cmd === 'VC_ISSUE') {
+    const resp = await messenger.sendMessage(message);
+    console.log('VC_ISSUE', resp);
+
+    response = resp;
+  } else if (cmd === 'VC_REQUEST') {
+    const resp = await messenger.sendMessage(message);
+    console.log('VC_REQUEST', resp);
+
+    response = resp;
   } else {
     response.errors = [{ error: 'OP_NOT_FOUND' }];
   }

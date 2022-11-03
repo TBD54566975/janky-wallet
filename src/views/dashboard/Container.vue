@@ -7,6 +7,7 @@ import { onMounted, ref } from 'vue';
 const items = [
   { name: 'Dashboard', href: '/dashboard', icon: ['fa-solid', 'fa-house'], current: true },
   { name: 'Personas', href: '/dashboard/personas', icon: ['fa-solid', 'fa-address-book'], current: false },
+  { name: 'Credentials', href: '/dashboard/credentials', icon: ['fa-solid', 'fa-id-card'], current: false },
   { name: 'Settings', href: '/dashboard/settings', icon: ['fa-solid', 'fa-gear'], current: false },
 ];
   
@@ -111,29 +112,23 @@ onMounted(() => {
           <span class="sr-only">Open sidebar</span>
           <MenuAlt2Icon class="h-6 w-6" aria-hidden="true" />
         </button>
-        <div class="border-b-2 border-cyan-800 border-dashed flex flex-1 justify-between px-4">
-          Hehe
-        </div>
+        <div class="border-b-2 border-cyan-800 border-dashed flex flex-1 justify-between px-4" />
       </div>
       <!-- Main Content Area -->
-      <main class="flex-1">
-        <div class="py-6">
-          <div class="max-w-7xl md:px-8 mx-auto px-4 sm:px-6">
-            <div class="py-4">
-              <router-view v-slot="{ Component }">
-                <template v-if="Component">
-                  <Suspense>
-                    <component :is="Component" />
-                    <template #fallback>
-                      <div class="flex h-screen items-center justify-center">
-                        <font-awesome-icon icon="fa-solid fa-spinner" class="h-32 w-32" spin />
-                      </div>
-                    </template>
-                  </Suspense>
+      <main>
+        <div class="max-w-7xl">
+          <router-view v-slot="{ Component }">
+            <template v-if="Component">
+              <Suspense>
+                <component :is="Component" />
+                <template #fallback>
+                  <div class="flex h-screen items-center justify-center">
+                    <font-awesome-icon icon="fa-solid fa-spinner" class="h-32 w-32" spin />
+                  </div>
                 </template>
-              </router-view>
-            </div>
-          </div>
+              </Suspense>
+            </template>
+          </router-view>
         </div>
       </main>
     </div>

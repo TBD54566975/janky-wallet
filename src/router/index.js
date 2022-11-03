@@ -11,6 +11,10 @@ const routes = [
         component : () => import('../views/dashboard/Personas.vue'),
       },
       {
+        path      : 'credentials',
+        component : () => import('../views/dashboard/VerifiableCredentials.vue'),
+      },
+      {
         path      : 'settings',
         component : () => import('../views/dashboard/Settings.vue'),
       },
@@ -27,6 +31,14 @@ const routes = [
       {
         path      : 'vc-application',
         component : () => import('../views/user-consent-popup/VCApplication.vue'),
+      },
+      {
+        path      : 'vc-selection',
+        component : () => import('../views/user-consent-popup/VCSelection.vue'),
+      },
+      {
+        path      : 'vc-accept',
+        component : () => import('../views/user-consent-popup/VCAcceptance.vue'),
       },
     ]
   },

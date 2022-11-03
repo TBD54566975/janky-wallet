@@ -11,7 +11,15 @@ window.web5 = {
   vc: {
     apply: async function(credentialManifest) {
       await window.web5.send('VC_APPLY', credentialManifest);
-    }
+    },
+    
+    issue: async function(verifiableCredential) {
+      await window.web5.send('VC_ISSUE', verifiableCredential);
+    },
+
+    request: async function(presentationExchange) {
+      await window.web5.send('VC_REQUEST', presentationExchange);
+    },
   },
   send: function (cmd, data) {
     return new Promise((resolve, _) => {
