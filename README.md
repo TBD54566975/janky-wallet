@@ -41,7 +41,7 @@ The injector is a [content script](https://developer.mozilla.org/en-US/docs/Mozi
 - Inject the `web5` API onto the `window` of a given web page
 - Act as a delegate by proxying messages between userland <-> background
 
-The content script has the exact same limitations that a Web Page does. The only distinguishing factor is its ability to send mesages to the background service worker. The injector has no elevated or privileged access to user data. Messages sent by the injector are indentified by the `origin` property set by the browser.
+The content script has the exact same limitations that a Web Page does. The only distinguishing factor is its ability to send mesages to the background service worker. The injector has no elevated or privileged access to user data. Messages sent by the injector are identified by the `origin` property set by the browser.
 
 ### Background Service Worker
 The [background service worker](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Background_scripts) context is the heart and soul of the wallet and has direct access to read and write user data. You can think of it as the wallet's "backend". The background service worker is communicated with via messages that contain a `cmd` property. This `cmd` property dictates the action taken by the service worker. 
