@@ -2,8 +2,6 @@ import { openUserConsentWindow } from '../utils';
 import { processCredentials } from '../../lib/presentation-exchange';
 
 export async function renderCredentialApplication({ id, data: credentialManifest }, sender, _) {
-  console.log('renderCredentialApplication', sender);
-
   // TODO: fetch cred manifest if message contains URL
   // TODO: parse/validate CredentialManifest
   

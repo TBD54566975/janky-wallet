@@ -2,8 +2,6 @@ export async function submitCredentialAppliction({ data: applicationDetails }, s
   const tasks = await chrome.storage.session.get();
   const task = tasks[sender.tab.windowId];
 
-  console.log(task);
-
   await chrome.notifications.create({
     type    : 'basic',
     title   : 'Received a Verifiable Credential!',

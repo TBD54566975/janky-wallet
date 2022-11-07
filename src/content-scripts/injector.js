@@ -2,7 +2,6 @@ import { Messenger } from '../lib/messenger';
 const messenger = new Messenger();
 
 document.addEventListener('1660022065712_monkeys', async function (e) {
-  console.log('content script', e);
   const { detail: message } = e;
   const { cmd } = message;
 
@@ -11,23 +10,19 @@ document.addEventListener('1660022065712_monkeys', async function (e) {
   if (cmd === 'DID_AUTHN_REGISTER') {
     message.rp = { id: e.target.origin };
     const resp = await messenger.sendMessage(message);
-    console.log('respownz', resp);
 
     response = resp;
 
   } else if (cmd === 'VC_APPLY') {
     const resp = await messenger.sendMessage(message);
-    console.log('VC_APPLY', resp);
 
     response = resp;
   } else if (cmd === 'VC_ISSUE') {
     const resp = await messenger.sendMessage(message);
-    console.log('VC_ISSUE', resp);
 
     response = resp;
   } else if (cmd === 'VC_REQUEST') {
     const resp = await messenger.sendMessage(message);
-    console.log('VC_REQUEST', resp);
 
     response = resp;
   } else {
