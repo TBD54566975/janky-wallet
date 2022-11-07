@@ -26,23 +26,35 @@ The wallet is responsible for ensuring that this operation is not performed with
 
 ![User Consent](assets/images/web5-did-request-user-consent.png)
 
+The wallet should provide a means to prevent the client (AKA host/domain) from requesting DIDs.
+
 # Synopsis
 
 ## Signature
 ```typescript
-function web5.did.request(didRequestOptions?: DIDRequestOptions): Promise<String>
+function web5.did.request(didRequestOptions: DIDRequestOptions): Promise<{
+  /** the wallet owner's selected DID */
+  did: String
+  /** proof of control for selected DID */
+  proof: String
+}>
 ```
 
 ## Arguments
 ### `DIDRequestOptions`
 ```typescript
 type DIDRequestOptions = {
+  /** a challenge to prove DID control */
+  challenge: String
   /** a list of accepted DID methods */
   methods?: String[]
   /** client's reason for requesting a DID. Will be displayed to wallet controller */
   reason?: String
 }
 ```
+
+⚠ _TODO: explain proof generation_
+⚠ _TODO: call out ties to DIDAuthn_
 
 # Security Considerations
 ⚠ Sites lying about their intent with `reason`.
@@ -51,6 +63,8 @@ type DIDRequestOptions = {
 
 ❓ _What should be returned if the user declines to share? `null`? should an exception be thrown_
 
+Use error model used by https://w3c.github.io/geolocation-api/#request-a-position as reference
+
 ❓ _What should happen if the wallet doesn't support the methods supplied by the client?_
 
-
+Do not prompt user. immediately return. 

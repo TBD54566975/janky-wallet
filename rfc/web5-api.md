@@ -1,6 +1,6 @@
 # Web5 API <!-- omit in toc -->
 
-Author(s): Moe Jangda
+Author(s): Daniel Buchner, Moe Jangda
 
 # Table of Contents <!-- omit in toc -->
 - [Summary](#summary)
@@ -38,7 +38,7 @@ API injected by a wallet onto the global [`window`](https://developer.mozilla.or
 The methods provided by this API can be bucketed into 3 categories:
 * `did` - All DID-related methods fall under this category and are namespaced under `web5.did`
 * `vc` - All methods related to Verifiable Credentials fall under this category and are namespaced under `web5.vc`
-* `dwn` - All methods related to requesting access, reading, writing, and subscribing to independently verifiable user data fall under this category and are namespaced under web5.dwn
+* `dwn` - All methods related to requesting access, reading, writing, and subscribing to independently verifiable user data fall under this category and are namespaced under `web5.dwn`
 
 # Motivation
 Our overall goal is for there to be many wallets developed by anyone who chooses to do so. In fact, we'll have failed if there's only one wallet in town. Defining a wallet agnostic `web5` API that can be implemented by any wallet will enable consistency and interoperability across clients and applications. Its functionality can easily be extended by defining new methods.

@@ -3,6 +3,7 @@
 # Table of Contents <!-- omit in toc -->
 - [Overview](#overview)
 - [Motivation](#motivation)
+- [Header Support](#header-support)
 - [Synopsis](#synopsis)
   - [Signature](#signature)
   - [Arguments](#arguments)
@@ -14,6 +15,9 @@ Author(s): Daniel Buchner, Moe Jangda
 This method can be used by clients to become aware of the DID methods supported by a wallet.
 
 # Motivation
+
+# Header Support
+⚠ _TODO: call out ability to provide headers `X-WEB5-SUPPORTED-DID-METHODS`_
 
 # Synopsis
 
