@@ -7,11 +7,11 @@ export async function openUserConsentWindow(path) {
   const currentWindow = await chrome.windows.getLastFocused();
   
   return await chrome.windows.create({
-    width: 459,
-    height: 692,
-    top: 100,
-    left: currentWindow.width - 500,
-    type: 'popup',
-    url: path
+    width  : 459,
+    height : 692,
+    top    : 100,
+    left   : currentWindow.width - 500,
+    type   : 'popup',
+    url    : path
   });
 }

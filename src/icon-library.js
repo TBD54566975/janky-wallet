@@ -6,7 +6,8 @@ import {
   faSpinner, 
   faChevronCircleLeft, 
   faChevronCircleRight, 
-  faHouse 
+  faHouse,
+  faIdCard
 } from '@fortawesome/free-solid-svg-icons';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -17,5 +18,6 @@ library.add(faSpinner);
 library.add(faBars);
 library.add(faBolt);
 library.add(faContactBook);
+library.add(faIdCard);
 library.add(faGear);
 library.add(faHouse);

@@ -1,4 +1,4 @@
-export class BackgroundMessageRouter {
+export class MessageRouter {
   constructor() {
     this.registeredHandlers = {};
 
@@ -15,7 +15,7 @@ export class BackgroundMessageRouter {
       };
 
       try {
-        await handler(data, sender, sendResponse);
+        await handler({ id, data }, sender, sendResponse);
       } catch(e) {
         // TODO: improve error handling. potentially allow for multiple errors to be surfaced
         chrome.tabs.sendMessage(sender.tab.id, {id, errors: [{ error: e.message }]});

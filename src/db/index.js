@@ -14,18 +14,18 @@ import { RegisteredDIDSchema } from './schemas/registered-did';
 
 export async function create() {
   const db = await createRxDatabase({
-    name: 'tbjank',
-    storage: getRxStorageDexie(),
-    ignoreDuplicate: true
+    name            : 'tbjank',
+    storage         : getRxStorageDexie(),
+    ignoreDuplicate : true
   });
 
   await db.addCollections({
-    personas: { schema: PersonaSchema },
-    registeredDIDs: { schema: RegisteredDIDSchema }
+    personas       : { schema: PersonaSchema },
+    registeredDIDs : { schema: RegisteredDIDSchema }
   });
 
   return {
-    Persona: new Persona(db.collections.personas),
-    RegisteredDID: new RegisteredDID(db.collections.registeredDIDs)
+    Persona       : new Persona(db.collections.personas),
+    RegisteredDID : new RegisteredDID(db.collections.registeredDIDs)
   };
 }
