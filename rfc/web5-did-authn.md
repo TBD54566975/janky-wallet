@@ -1,6 +1,6 @@
 # `web5.did.authn` <!-- omit in toc -->
 
-⚠ **WIP**
+⚠ **Incomplete**
 
 Author(s): Daniel Buchner, Moe Jangda
 
