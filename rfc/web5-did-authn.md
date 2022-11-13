@@ -57,8 +57,7 @@ type DIDAuthnRegistrationOptions = {
    * This SHOULD be done in a fashion that does not rely upon a client’s behavior, e.g., 
    * the Relying Party SHOULD store the challenge temporarily until the operation is complete. 
    * Tolerating a mismatch will compromise the security of the protocol.
-   * In order to prevent replay attacks, the challenges MUST contain enough entropy to make guessing 
-   * them infeasible. Challenges SHOULD therefore be at least 16 bytes long.
+   * In order to prevent replay attacks, the challenges MUST contain enough entropy to make guessing them infeasible and should therefore be at least 16 bytes long.
    */
   challenge: String
   /**
