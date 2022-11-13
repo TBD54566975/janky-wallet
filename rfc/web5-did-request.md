@@ -82,7 +82,6 @@ The Protected Header **MUST** contain at least the following properties:
 | -------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | `alg`    | String | Text                                                                                                                                            |
 | `kid`    | String | Key ID. used to identify which public key should be used to verify the signature. This Key ID **MUST** be present as a [verification method](https://www.w3.org/TR/did-core/#referring-to-verification-methods) in the provided did's DID Doc |
-|          |        |                                                                                                                                                 |
 ### Payload
 The JWS payload **MUST** be a JSON object that contains the following properties:
 
@@ -108,7 +107,7 @@ return `REQUEST_DENIED` error
 
 ---
 
-**[⚠ Unresolved] Wallet supports DID method provided by client but user hasn't created a DID of that method**
+**Wallet supports DID method provided by client but user hasn't created a DID of that method (⚠ Unresolved) **
 
 The 2 options that come to mind here are:
 * Render UI that requests the user to create a new DID to share. 
