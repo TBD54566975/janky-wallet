@@ -107,7 +107,7 @@ return `REQUEST_DENIED` error
 
 ---
 
-**Wallet supports DID method provided by client but user hasn't created a DID of that method (⚠ Unresolved) **
+**Wallet supports DID method provided by client but user hasn't created a DID of that method (⚠ Unresolved)**
 
 The 2 options that come to mind here are:
 * Render UI that requests the user to create a new DID to share. 
