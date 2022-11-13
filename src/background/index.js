@@ -1,4 +1,6 @@
 import * as db from '../db';
+import * as DWN from './dwn';
+
 import { MessageRouter } from './message-router';
 import { getUserConsentTask } from './message-handlers/get-user-consent-task';
 import { startDidRegistration } from './message-handlers/did-authn/start-did-registration';
@@ -17,6 +19,8 @@ chrome.runtime.onInstalled.addListener(async ({ _reason, _version }) => {
   if (!defaultPersona) {
     await Persona.create('default');
   }
+
+  await DWN.load();
 });
 
 // controls what happens when the extension's icon is clicked
